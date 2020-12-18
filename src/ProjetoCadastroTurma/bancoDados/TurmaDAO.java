@@ -13,11 +13,12 @@ import java.util.List;
 import ProjetoCadastroTurma.classe.Professor;
 import ProjetoCadastroTurma.classe.Turma;
 import ProjetoCadastroTurma.conn.ConexaoFactory;
+import java.sql.Date;
 
 public class TurmaDAO {
 
     public static void save(Turma turma) {//metdo esta salvando uma turma  
-        String sql = "INSERT INTO `escola`.`turma` (sala, professorId) VALUES (?, ?)";//VAlue esta em preparStatment;
+        String sql = "INSERT INTO `escola`.`turma` (sala, professorId, dataAbertura) VALUES (?, ?, ?)";//VAlue esta em preparStatment;
 
         //Esta criando a conexao
         try (Connection conn = ConexaoFactory.getConexao();
@@ -25,6 +26,7 @@ public class TurmaDAO {
             //Adicionar os valores na query
             ps.setString(1, turma.getSala());
             ps.setInt(2, turma.getProfessor().getIdnome());
+            ps.setDate(3, (Date) turma.getDataAbertura());
             //executando o comando Sql
             ps.executeUpdate();//PRESCISA SMEPRE EXECUTAR O EXECUTE
             //imprimindo na tela registro inserido com sucesso

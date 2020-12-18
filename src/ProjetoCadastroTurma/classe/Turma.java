@@ -1,18 +1,26 @@
-
 package ProjetoCadastroTurma.classe;
 
 import java.util.Date;
 import java.util.Objects;
 
-
 public class Turma {
-    
+
     private Integer codigo;
     private String sala;
-//    private String dataAbertura;
-//    private Date dataFechamento;
+    private Date dataAbertura;
+    private Date dataFechamento;
     private Professor professor;
 
+    //CONSTRUTOR SOBRECARREGADO
+    public Turma(Integer codigo, String sala, Date dataAbertura, Date dataFechamento, Professor professor) {
+        this.codigo = codigo;
+        this.sala = sala;
+        this.dataAbertura = dataAbertura;
+        this.dataFechamento = dataFechamento;
+        this.professor = professor;
+    }
+    
+    //CONSTRUTOR COM 3 STRIBUTOS
     public Turma(Integer codigo, String sala, Professor professor) {
         this.codigo = codigo;
         this.sala = sala;
@@ -29,6 +37,7 @@ public class Turma {
         hash = 83 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -48,12 +57,17 @@ public class Turma {
     }
 
     //TOSTRING
+
     @Override
     public String toString() {
-        return "Turma{" + "codigo=" + codigo + ", sala=" + sala + ", professor=" + professor + '}';
+        return "Turma{" + "codigo=" + codigo + 
+                " sala=" + sala + 
+                " dataAbertura=" + dataAbertura + 
+                " dataFechamento=" + dataFechamento + 
+                " professor=" + professor + '.';
     }
+    
 
-  
     //GET AND SET
     public Integer getCodigo() {
         return codigo;
@@ -78,5 +92,21 @@ public class Turma {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
-  
+
+    public Date getDataAbertura() {
+        return dataAbertura;
+    }
+
+    public void setDataAbertura(Date dataAbertura) {
+        this.dataAbertura = dataAbertura;
+    }
+
+    public Date getDataFechamento() {
+        return dataFechamento;
+    }
+
+    public void setDataFechamento(Date dataFechamento) {
+        this.dataFechamento = dataFechamento;
+    }
+   
 }

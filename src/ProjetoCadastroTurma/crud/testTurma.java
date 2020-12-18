@@ -2,7 +2,6 @@ package ProjetoCadastroTurma.crud;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import ProjetoCadastroTurma.bancoDados.ProfessorDAO;
@@ -12,12 +11,14 @@ import ProjetoCadastroTurma.classe.Professor;
 import ProjetoCadastroTurma.classe.Turma;
 import static ProjetoCadastroTurma.crud.testAluno.deletar;
 import static ProjetoCadastroTurma.crud.testAluno.listar;
+import java.text.DateFormat;
+import java.text.ParseException;
 
 public class testTurma {
 
     private static Scanner teclado = new Scanner(System.in);// METODO SCANNER DADOS USANDO EXPRESSOES 
 
-    public static void executar(int op) {
+    public static void executar(int op) throws ParseException {
         switch (op) {
             case 1:
                 inserir();
@@ -38,13 +39,18 @@ public class testTurma {
         }
     }
 
-    private static void inserir() {
+    private static void inserir() throws ParseException {
         Turma turma = new Turma();
         System.out.println("Digita a Sala: ");
         turma.setSala(teclado.nextLine());
         System.out.println("Selecione um dos professores abaixo");
         List<Professor> professorList = testProfessor.listar();
         turma.setProfessor(professorList.get(Integer.parseInt(teclado.nextLine())));
+        //ACRESCENTANDO A DATA
+        System.out.println("Digita a data de Abertura: ");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        turma.setDataAbertura(sdf.parse(teclado.nextLine()));
+
         TurmaDAO.save(turma);
     }
     
