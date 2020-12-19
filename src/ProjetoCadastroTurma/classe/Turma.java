@@ -1,6 +1,6 @@
 package ProjetoCadastroTurma.classe;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Turma {
@@ -21,10 +21,11 @@ public class Turma {
     }
     
     //CONSTRUTOR COM 3 STRIBUTOS
-    public Turma(Integer codigo, String sala, Professor professor) {
+    public Turma(Integer codigo, String sala, Professor professor, Date dataAbertura) {
         this.codigo = codigo;
         this.sala = sala;
         this.professor = professor;
+        this.dataAbertura = dataAbertura;
     }
 
     //CONSTRUTOR

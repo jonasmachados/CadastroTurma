@@ -13,7 +13,7 @@ import java.util.List;
 import ProjetoCadastroTurma.classe.Professor;
 import ProjetoCadastroTurma.classe.Turma;
 import ProjetoCadastroTurma.conn.ConexaoFactory;
-import java.sql.Date;
+
 
 public class TurmaDAO {
 
@@ -26,7 +26,8 @@ public class TurmaDAO {
             //Adicionar os valores na query
             ps.setString(1, turma.getSala());
             ps.setInt(2, turma.getProfessor().getIdnome());
-            ps.setDate(3, (Date) turma.getDataAbertura());
+            ps.setDate(3, turma.getDataAbertura());
+            //setDate(4, new java.sql.Date(turma.getDataAbertura().getTime())));
             //executando o comando Sql
             ps.executeUpdate();//PRESCISA SMEPRE EXECUTAR O EXECUTE
             //imprimindo na tela registro inserido com sucesso
@@ -45,7 +46,7 @@ public class TurmaDAO {
                 ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {//ENQUANTO VARIVAEL RS RECEBE O OBJETO ELE VAI SELECIONAR 
                 Professor prof = ProfessorDAO.searchById(rs.getInt("professorId"));
-                turmaList.add(new Turma(rs.getInt("codigo"), rs.getString("sala"), prof));
+                turmaList.add(new Turma(rs.getInt("codigo"), rs.getString("sala"), prof, rs.getDate("data")));
             }
             return turmaList;
         } catch (SQLException e) {
