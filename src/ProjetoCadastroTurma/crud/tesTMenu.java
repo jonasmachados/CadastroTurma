@@ -1,7 +1,7 @@
 
 package ProjetoCadastroTurma.crud;
 
-import java.text.ParseException;
+
 import java.util.Scanner;
 
 
@@ -9,7 +9,7 @@ public class tesTMenu {
     
     private static Scanner teclado = new Scanner(System.in);// METODO SCANNER DADOS USANDO EXPRESSOES 
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
 
         int op;
         while (true) {

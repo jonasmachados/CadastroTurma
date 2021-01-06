@@ -8,7 +8,6 @@ import ProjetoCadastroTurma.classe.Professor;
 import ProjetoCadastroTurma.classe.Turma;
 
 import java.text.ParseException;
-import java.util.Date;
 
 public class testTurma {
 
@@ -38,16 +37,19 @@ public class testTurma {
     private static void inserir() {
         try {
             Turma turma = new Turma();
+            //SELECIONADO A SALA
             System.out.println("Digita a Sala: ");
             turma.setSala(teclado.nextLine());
+            //SELECIONANDO O PROFESSOR
             System.out.println("Selecione um dos professores abaixo");
             List<Professor> professorList = testProfessor.listar();
             turma.setProfessor(professorList.get(Integer.parseInt(teclado.nextLine())));
             //ACRESCENTANDO A DATA
             System.out.println("Digita a data de Abertura: ");
-            //Formatando a data e fazendo um cast SQL Date
-            Date date = new SimpleDateFormat("dd-MM-yyyy").parse(teclado.next());
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            turma.setDataAbertura(formato.parse(teclado.nextLine()));
+             
             TurmaDAO.save(turma);
         } catch (ParseException e) {
             System.err.println("Digite uma data valida");

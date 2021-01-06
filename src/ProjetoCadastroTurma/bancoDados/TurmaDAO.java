@@ -14,7 +14,6 @@ import ProjetoCadastroTurma.classe.Professor;
 import ProjetoCadastroTurma.classe.Turma;
 import ProjetoCadastroTurma.conn.ConexaoFactory;
 
-
 public class TurmaDAO {
 
     public static void save(Turma turma) {//metdo esta salvando uma turma  
@@ -25,9 +24,9 @@ public class TurmaDAO {
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             //Adicionar os valores na query
             ps.setString(1, turma.getSala());
-            ps.setInt(2, turma.getProfessor().getIdnome());
-            ps.setDate(3, turma.getDataAbertura());
-            //setDate(4, new java.sql.Date(turma.getDataAbertura().getTime())));
+            ps.setInt(2, turma.getProfessor().getIdnome());          
+            ps.setDate(3, new java.sql.Date(turma.getDataAbertura().getTime()));
+            
             //executando o comando Sql
             ps.executeUpdate();//PRESCISA SMEPRE EXECUTAR O EXECUTE
             //imprimindo na tela registro inserido com sucesso
