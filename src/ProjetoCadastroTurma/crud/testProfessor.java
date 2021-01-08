@@ -42,7 +42,7 @@ public class testProfessor {
     private static void atualizar() {
         System.out.println("Selecione um dos professores abaixo");
         List<Professor> professorList = listar();
-        Professor prof = professorList.get(Integer.parseInt(teclado.nextLine()));
+        Professor prof = professorList.get(Integer.parseInt(teclado.nextLine()));       
         System.out.println("Novo nome ou enter para manter o mesmo");
         String nome = teclado.nextLine();
         System.out.println("Nova Titulacao ou enter para manter o mesmo");

@@ -1,11 +1,13 @@
 package ProjetoCadastroTurma.crud;
 
+import ProjetoCadastroTurma.bancoDados.ProfessorDAO;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 import ProjetoCadastroTurma.bancoDados.TurmaDAO;
 import ProjetoCadastroTurma.classe.Professor;
 import ProjetoCadastroTurma.classe.Turma;
+import static ProjetoCadastroTurma.crud.testProfessor.listar;
 
 import java.text.ParseException;
 
@@ -13,7 +15,7 @@ public class testTurma {
 
     private static Scanner teclado = new Scanner(System.in);// METODO SCANNER DADOS USANDO EXPRESSOES 
 
-    public static void executar(int op) {
+    public static void executar(int op) throws ParseException {
         switch (op) {
             case 1:
                 inserir();
@@ -28,9 +30,9 @@ public class testTurma {
 //                System.out.println("Digite o nome");
 //                buscarPorNome(teclado.nextLine());
 //                break;
-//            case 5://DELETAR
-//                deletar();
-//                break;
+            case 4://DELETAR
+                deletar();
+                break;
         }
     }
 
@@ -49,7 +51,7 @@ public class testTurma {
 
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             turma.setDataAbertura(formato.parse(teclado.nextLine()));
-             
+
             TurmaDAO.save(turma);
         } catch (ParseException e) {
             System.err.println("Digite uma data valida");
@@ -59,15 +61,7 @@ public class testTurma {
     }
 
     private static void atualizar() {
-//        Turma turma = new Turma();
-//        System.out.println("Digita a Sala: ");
-//        turma.setSala(teclado.nextLine());
-//        System.out.println("Selecione um dos Professores Abaixo");
-//        List<Professor> professorList = ProfessorDAO.listar();
-//        c.setComprador(compradorList.get(Integer.parseInt(teclado.nextLine())));
-//        TurmaDAO.save(c);
     }
-
     //Metodo para listar todos os Compadores
     public static List<Turma> relatorio() {
         List<Turma> turmaList = TurmaDAO.selectAll();
@@ -79,4 +73,13 @@ public class testTurma {
         return turmaList;
     }
 
+    private static void deletar(){
+        System.out.println("Selecione uma das turmas a baixo para deletar");
+        List<Turma> turmalist = relatorio();
+        int index = Integer.parseInt(teclado.nextLine());
+        System.out.println("Tem certeza? s/n");
+        String op = teclado.nextLine();
+        if(op.startsWith("s"));
+            TurmaDAO.delete(turmalist.get(index));
+    }
 }
