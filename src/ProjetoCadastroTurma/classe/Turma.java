@@ -28,6 +28,15 @@ public class Turma {
         this.dataAbertura = dataAbertura;
     }
 
+    public Turma(Integer codigo, String sala, Date dataAbertura, Date dataFechamento) {
+        this.codigo = codigo;
+        this.sala = sala;
+        this.dataAbertura = dataAbertura;
+        this.dataFechamento = dataFechamento;
+    }
+    
+    
+
     //CONSTRUTOR
     public Turma() {
     }

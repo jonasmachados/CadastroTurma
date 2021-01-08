@@ -71,7 +71,8 @@ public class tesTMenu {
         System.out.println("1: Inserir uma nova Turma");
         System.out.println("2: Atualizar dados da Turma");
         System.out.println("3: Listas alunos e professor responsavel");
-        System.out.println("4: Deletar");
+        System.out.println("4: Buscar Turma por Nome");
+        System.out.println("5: Deletar");
         
     }
     

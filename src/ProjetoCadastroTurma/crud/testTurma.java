@@ -1,13 +1,11 @@
 package ProjetoCadastroTurma.crud;
 
-import ProjetoCadastroTurma.bancoDados.ProfessorDAO;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 import ProjetoCadastroTurma.bancoDados.TurmaDAO;
 import ProjetoCadastroTurma.classe.Professor;
 import ProjetoCadastroTurma.classe.Turma;
-import static ProjetoCadastroTurma.crud.testProfessor.listar;
 
 import java.text.ParseException;
 
@@ -26,11 +24,11 @@ public class testTurma {
             case 3://LISTARS T TODOS OS ALUNOS
                 relatorio();
                 break;
-//            case 4://BUSCAR ALUNO POR NOME
-//                System.out.println("Digite o nome");
-//                buscarPorNome(teclado.nextLine());
-//                break;
-            case 4://DELETAR
+            case 4://BUSCAR ALUNO POR NOME
+                System.out.println("Digite o nome");
+                buscarPorNome(teclado.nextLine());
+                break;
+            case 5://DELETAR
                 deletar();
                 break;
         }
@@ -62,6 +60,7 @@ public class testTurma {
 
     private static void atualizar() {
     }
+
     //Metodo para listar todos os Compadores
     public static List<Turma> relatorio() {
         List<Turma> turmaList = TurmaDAO.selectAll();
@@ -73,13 +72,22 @@ public class testTurma {
         return turmaList;
     }
 
-    private static void deletar(){
+    private static void deletar() {
         System.out.println("Selecione uma das turmas a baixo para deletar");
         List<Turma> turmalist = relatorio();
         int index = Integer.parseInt(teclado.nextLine());
         System.out.println("Tem certeza? s/n");
         String op = teclado.nextLine();
-        if(op.startsWith("s"));
-            TurmaDAO.delete(turmalist.get(index));
+        if (op.startsWith("s"));
+        TurmaDAO.delete(turmalist.get(index));
     }
+
+    private static void buscarPorNome(String sala){
+        List<Turma> turmaList = TurmaDAO.searchbyName(sala);
+        for (int i = 0; i < turmaList.size(); i++) {
+            Turma turma = turmaList.get(i);
+            System.out.println("(" + i + ")A Turma da Sala: " + turma.getSala()+ ", Data de Abertura: " + turma.getDataAbertura() + ", Data de Fechamento: " + turma.getDataFechamento() +  ", "+ turma.getProfessor());
+        }
+    }
+
 }
