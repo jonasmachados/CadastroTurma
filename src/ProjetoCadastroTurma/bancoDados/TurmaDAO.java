@@ -94,14 +94,15 @@ public class TurmaDAO {
     
     //METODO PARA PROCURA SALA
     public static List<Turma> searchbyName(String sala) {
-        String sql = "SELECT codigo, sala, dataAbertura, dataFechamento FROM escola.turma WHERE sala like ? ";
+        String sql = "SELECT codigo, sala, professorId, dataAbertura, dataFechamento FROM escola.turma WHERE sala like ? ";
         List<Turma> turmaList = new ArrayList<>();
         try (Connection conn = ConexaoFactory.getConexao();
                 PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(1, "%" + sala + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {//ENQUANTO VARIVAEL RS RECEBE O OBJETO ELE VAI SELECIONAR 
-                turmaList.add(new Turma(rs.getInt("codigo"), rs.getString("sala"), rs.getDate("dataAbertura"), rs.getDate("dataAbertura")));
+                Professor prof = ProfessorDAO.searchById(rs.getInt("professorId"));
+                turmaList.add(new Turma(rs.getInt("codigo"), rs.getString("sala"), rs.getDate("dataAbertura"), rs.getDate("dataAbertura"), prof));
 //professorList.add(new Professor(rs.getInt("id"),rs.getInt("cpf"), rs.getInt("nome")));
 
             }

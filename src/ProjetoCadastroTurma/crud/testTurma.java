@@ -26,7 +26,7 @@ public class testTurma {
                 break;
             case 4://BUSCAR ALUNO POR NOME
                 System.out.println("Digite o nome");
-                buscarPorNome(teclado.nextLine());
+                buscarPorSala(teclado.nextLine());
                 break;
             case 5://DELETAR
                 deletar();
@@ -82,11 +82,11 @@ public class testTurma {
         TurmaDAO.delete(turmalist.get(index));
     }
 
-    private static void buscarPorNome(String sala){
+    private static void buscarPorSala(String sala){
         List<Turma> turmaList = TurmaDAO.searchbyName(sala);
         for (int i = 0; i < turmaList.size(); i++) {
             Turma turma = turmaList.get(i);
-            System.out.println("(" + i + ")A Turma da Sala: " + turma.getSala()+ ", Data de Abertura: " + turma.getDataAbertura() + ", Data de Fechamento: " + turma.getDataFechamento() +  ", "+ turma.getProfessor());
+            System.out.println("(" + i + ")A Turma da Sala: " + turma.getSala()+ ", Data de Abertura: " + turma.getDataAbertura() + ", Data de Fechamento: " + turma.getDataFechamento() +  ", Possui o Professor Responsavel: "+ turma.getProfessor().getNome());
         }
     }
 
